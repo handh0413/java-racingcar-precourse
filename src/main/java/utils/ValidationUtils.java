@@ -20,7 +20,9 @@ public class ValidationUtils {
                 && condition <= MOVEMENT_STOP_CONDITION_MAX;
     }
 
-    public static boolean validateCarNameLength(int length) {
-        return CAR_NAME_LENGTH_MIN <= length && length <= CAR_NAME_LENGTH_MAX;
+    public static boolean validateCarNameLength(String name) {
+        return name != null &&
+                CAR_NAME_LENGTH_MIN <= name.length() &&
+                name.length() <= CAR_NAME_LENGTH_MAX;
     }
 }

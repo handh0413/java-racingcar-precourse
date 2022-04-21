@@ -23,10 +23,10 @@ class ValidationUtilsTest {
     }
 
     @ParameterizedTest
-    @CsvSource({"10,false", "6,false", "5,true", "4,true", "1,true", "0,false", "-1,false"})
+    @CsvSource({"altogether,false", "banana,false", "jason,true", "toby,true", "a,true", ",false"})
     @DisplayName("자동차_이름_길이_검증_1_5")
-    public void 자동차_이름_길이_검증_1_5(int length, boolean expected) {
-        boolean state = ValidationUtils.validateCarNameLength(length);
+    public void 자동차_이름_길이_검증_1_5(String name, boolean expected) {
+        boolean state = ValidationUtils.validateCarNameLength(name);
         assertThat(state).isEqualTo(expected);
     }
 }
