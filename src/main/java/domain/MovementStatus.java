@@ -1,5 +1,9 @@
 package domain;
 
 public enum MovementStatus {
-    FORWARD, STOP
+    FORWARD, STOP;
+
+    public boolean isForward() {
+        return this == FORWARD;
+    }
 }
