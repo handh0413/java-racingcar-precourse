@@ -15,4 +15,13 @@ class ValidationUtilsTest {
         assertThat(ValidationUtils.validateMovementCondition(0)).isEqualTo(true);
         assertThat(ValidationUtils.validateMovementCondition(-1)).isEqualTo(false);
     }
+
+    @Test
+    @DisplayName("랜덤_숫자_범위_0_9")
+    public void 정지_조건_범위_0_3() {
+        assertThat(ValidationUtils.validateStopCondition(4)).isEqualTo(false);
+        assertThat(ValidationUtils.validateStopCondition(3)).isEqualTo(true);
+        assertThat(ValidationUtils.validateStopCondition(0)).isEqualTo(true);
+        assertThat(ValidationUtils.validateStopCondition(-1)).isEqualTo(false);
+    }
 }
