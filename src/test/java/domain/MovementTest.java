@@ -12,17 +12,17 @@ class MovementTest {
     @DisplayName("FORWARD_STOP_범위_조건_확인")
     public void FORWARD_STOP_범위_조건_확인() {
         Movement movement = new Movement();
-        assertThat(movement.isMovable(0)).isEqualTo(MovementStatus.STOP);
-        assertThat(movement.isMovable(3)).isEqualTo(MovementStatus.STOP);
-        assertThat(movement.isMovable(4)).isEqualTo(MovementStatus.FORWARD);
-        assertThat(movement.isMovable(9)).isEqualTo(MovementStatus.FORWARD);
+        assertThat(movement.getMovementStatus(0)).isEqualTo(MovementStatus.STOP);
+        assertThat(movement.getMovementStatus(3)).isEqualTo(MovementStatus.STOP);
+        assertThat(movement.getMovementStatus(4)).isEqualTo(MovementStatus.FORWARD);
+        assertThat(movement.getMovementStatus(9)).isEqualTo(MovementStatus.FORWARD);
 
         assertThrows(IllegalArgumentException.class, () -> {
-            movement.isMovable(-1);
+            movement.getMovementStatus(-1);
         });
 
         assertThrows(IllegalArgumentException.class, () -> {
-            movement.isMovable(10);
+            movement.getMovementStatus(10);
         });
     }
 
