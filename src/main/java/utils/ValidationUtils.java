@@ -7,6 +7,9 @@ public class ValidationUtils {
     public static final int MOVEMENT_STOP_CONDITION_MIN = 0;
     public static final int MOVEMENT_STOP_CONDITION_MAX = 3;
 
+    public static final int CAR_NAME_LENGTH_MIN = 1;
+    public static final int CAR_NAME_LENGTH_MAX = 5;
+
     public static boolean validateMovementCondition(int number) {
         return MOVEMENT_CONDITION_MIN <= number
                 && number <= MOVEMENT_CONDITION_MAX;
@@ -17,4 +20,7 @@ public class ValidationUtils {
                 && condition <= MOVEMENT_STOP_CONDITION_MAX;
     }
 
+    public static boolean validateCarNameLength(int length) {
+        return CAR_NAME_LENGTH_MIN <= length && length <= CAR_NAME_LENGTH_MAX;
+    }
 }

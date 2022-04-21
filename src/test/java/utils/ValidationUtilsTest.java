@@ -21,4 +21,12 @@ class ValidationUtilsTest {
     public void 정지_조건_범위_0_3(int conditionNumber, boolean result) {
         assertThat(ValidationUtils.validateStopCondition(conditionNumber)).isEqualTo(result);
     }
+
+    @ParameterizedTest
+    @CsvSource({"10,false", "6,false", "5,true", "4,true", "1,true", "0,false", "-1,false"})
+    @DisplayName("자동차_이름_길이_검증_1_5")
+    public void 자동차_이름_길이_검증_1_5(int length, boolean expected) {
+        boolean state = ValidationUtils.validateCarNameLength(length);
+        assertThat(state).isEqualTo(expected);
+    }
 }
