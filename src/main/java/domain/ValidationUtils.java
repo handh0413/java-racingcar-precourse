@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.List;
+
 public class ValidationUtils {
     public static final int MOVEMENT_CONDITION_MIN = 0;
     public static final int MOVEMENT_CONDITION_MAX = 9;
@@ -24,5 +26,9 @@ public class ValidationUtils {
         return name != null &&
                 CAR_NAME_LENGTH_MIN <= name.length() &&
                 name.length() <= CAR_NAME_LENGTH_MAX;
+    }
+
+    public static boolean validateRacingCarsSize(List<Car> cars) {
+        return !cars.isEmpty();
     }
 }
