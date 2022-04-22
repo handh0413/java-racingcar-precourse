@@ -1,4 +1,4 @@
-package utils;
+package domain;
 
 public class ValidationUtils {
     public static final int MOVEMENT_CONDITION_MIN = 0;

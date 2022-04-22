@@ -1,7 +1,5 @@
 package domain;
 
-import utils.ValidationUtils;
-
 public class CarName {
     String name;
 
