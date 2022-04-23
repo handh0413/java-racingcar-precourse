@@ -31,4 +31,8 @@ public class ValidationUtils {
     public static boolean validateRacingCarsSize(List<Car> cars) {
         return !cars.isEmpty();
     }
+
+    public static boolean validatePositiveNumber(int number) {
+        return number > 0;
+    }
 }

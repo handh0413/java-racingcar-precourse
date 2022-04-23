@@ -30,4 +30,11 @@ class ValidationUtilsTest {
         assertThat(state).isEqualTo(expected);
     }
 
+    @ParameterizedTest
+    @CsvSource({"-1,false", "0,false", "1,true", "10,true"})
+    @DisplayName("자연수_입력_확인")
+    public void 자연수_입력_확인(int number, boolean result) {
+        assertThat(ValidationUtils.validatePositiveNumber(number)).isEqualTo(result);
+    }
+
 }
