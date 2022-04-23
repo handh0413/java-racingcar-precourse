@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static view.InputView.*;
+import static view.MessageConstant.INPUT_NUMBER;
+import static view.MessageConstant.RACING_RESULT;
 
 public class GameController {
     private RacingCars racingCars;
@@ -24,6 +26,9 @@ public class GameController {
     public void play() {
         readUserInputForRacingCarNames();
         readUserInputForRacingCount();
+        OutputView.printLine();
+        OutputView.printMessage(RACING_RESULT);
+        startRacing();
     }
 
     public void readUserInputForRacingCarNames() {
@@ -41,7 +46,7 @@ public class GameController {
             int count = Integer.parseInt(readUserInput(REQUEST_COUNT));
             this.racingCount = new RacingCount(count);
         } catch (NumberFormatException e) {
-            OutputView.printErrorMessage("숫자를 입력해주세요.");
+            OutputView.printErrorMessage(INPUT_NUMBER);
             readUserInputForRacingCount();
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e);
@@ -52,6 +57,7 @@ public class GameController {
     public void startRacing() {
         for (int i = 0; i < racingCount.getCount(); i++) {
             racingCars.drive();
+            OutputView.printRacingResult(racingCars);
         }
     }
 
