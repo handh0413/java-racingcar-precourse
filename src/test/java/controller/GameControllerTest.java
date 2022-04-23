@@ -22,8 +22,8 @@ class GameControllerTest {
             GameController controller = new GameController(racingCars, new RacingCount(4));
             controller.startRacing();
 
-            assertThat(racingCars.find("tom").getPosition()).isEqualTo(4);
-            assertThat(racingCars.find("jack").getPosition()).isEqualTo(0);
+            assertThat(controller.findRacingCar("tom").getPosition()).isEqualTo(4);
+            assertThat(controller.findRacingCar("jack").getPosition()).isEqualTo(0);
         }
     }
 

@@ -1,5 +1,6 @@
 package controller;
 
+import domain.Car;
 import domain.RacingCars;
 import domain.RacingCount;
 
@@ -16,5 +17,13 @@ public class GameController {
         for (int i = 0; i < racingCount.getCount(); i++) {
             racingCars.drive();
         }
+    }
+
+    public Car findRacingCar(String name) {
+        return racingCars.find(name);
+    }
+
+    public RacingCars getRacingCars() {
+        return racingCars;
     }
 }
