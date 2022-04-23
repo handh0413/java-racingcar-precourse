@@ -1,13 +1,8 @@
 package domain;
 
-import domain.ValidationUtils;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -32,18 +27,6 @@ class ValidationUtilsTest {
     @DisplayName("자동차_이름_길이_검증_1_5")
     public void 자동차_이름_길이_검증_1_5(String name, boolean expected) {
         boolean state = ValidationUtils.validateCarNameLength(name);
-        assertThat(state).isEqualTo(expected);
-    }
-
-    @ParameterizedTest
-    @CsvSource({"0,false", "1,true", "2,true", "3,true", "4,true", "5,true", "6,true"})
-    @DisplayName("경주용_자동차_개수_검증")
-    public void 경주용_자동차_개수_검증(int size, boolean expected) {
-        List<Car> cars = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
-            cars.add(new Car("test" + i));
-        }
-        boolean state = ValidationUtils.validateRacingCarsSize(cars);
         assertThat(state).isEqualTo(expected);
     }
 

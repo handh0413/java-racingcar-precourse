@@ -5,21 +5,27 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static domain.ValidationUtils.validateRacingCarsSize;
+
 public class RacingCars {
     private List<Car> cars;
 
     public RacingCars(List<Car> cars) {
-        if (!ValidationUtils.validateRacingCarsSize(cars)) {
-            throw new IllegalArgumentException("자동차 개수 사이즈에 문제가 있습니다.");
+        if (!validateDuplicateCar(cars)) {
+            throw new IllegalStateException("중복된 이름의 자동차가 포함되어 있습니다.");
         }
         this.cars = cars;
+    }
+
+    static boolean validateDuplicateCar(List<Car> cars) {
+        List<Car> distinctCars = cars.stream().distinct().collect(Collectors.toList());
+        return cars.size() == distinctCars.size();
     }
 
     static List<Car> makeCarListFromNames(String names) {
         List<Car> carList = Stream.of(names.split(","))
                 .map(String::trim)
                 .map(Car::new)
-                .distinct()
                 .collect(Collectors.toList());
         return carList;
     }
