@@ -20,7 +20,13 @@ public class RacingCars {
         return cars.size() == distinctCars.size();
     }
 
-    static List<Car> makeCarListFromNames(String names) {
+    public void drive() {
+        for (Car car : cars) {
+            car.drive();
+        }
+    }
+
+    public static List<Car> makeCarListFromNames(String names) {
         List<Car> carList = Stream.of(names.split(","))
                 .map(String::trim)
                 .map(Car::new)
@@ -42,4 +48,5 @@ public class RacingCars {
     public List<Car> getCars() {
         return Collections.unmodifiableList(cars);
     }
+
 }

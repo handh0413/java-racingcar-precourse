@@ -1,15 +1,20 @@
 package domain;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import controller.GameController;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.mockito.MockedStatic;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.Mockito.mockStatic;
 
 class RacingCarsTest {
 
@@ -79,6 +84,31 @@ class RacingCarsTest {
             cars.find("juny");
         });
         assertThat(exceptionThrown.getMessage()).isEqualTo("존재하지 않는 자동차입니다.");
+    }
+
+    @Test
+    @DisplayName("주행_테스트")
+    public void 주행_테스트() {
+        try (final MockedStatic<Randoms> mock = mockStatic(Randoms.class)) {
+            mock.when(() -> Randoms.pickNumberInRange(anyInt(), anyInt())).thenReturn(4, 0, 5, 1, 6, 2, 7, 3);
+            RacingCars racingCars = new RacingCars(RacingCars.makeCarListFromNames("tom,jack"));
+
+            racingCars.drive();
+            assertThat(racingCars.find("tom").getPosition()).isEqualTo(1);
+            assertThat(racingCars.find("jack").getPosition()).isEqualTo(0);
+
+            racingCars.drive();
+            assertThat(racingCars.find("tom").getPosition()).isEqualTo(2);
+            assertThat(racingCars.find("jack").getPosition()).isEqualTo(0);
+
+            racingCars.drive();
+            assertThat(racingCars.find("tom").getPosition()).isEqualTo(3);
+            assertThat(racingCars.find("jack").getPosition()).isEqualTo(0);
+
+            racingCars.drive();
+            assertThat(racingCars.find("tom").getPosition()).isEqualTo(4);
+            assertThat(racingCars.find("jack").getPosition()).isEqualTo(0);
+        }
     }
 
 }
