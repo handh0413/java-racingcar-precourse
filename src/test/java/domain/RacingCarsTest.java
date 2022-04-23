@@ -61,4 +61,24 @@ class RacingCarsTest {
         assertThat(exceptionThrown.getMessage()).isEqualTo("중복된 이름의 자동차가 포함되어 있습니다.");
     }
 
+    @Test
+    public void 이름으로_자동차_찾기_테스트() {
+        assertDoesNotThrow(() -> {
+            List<Car> list = RacingCars.makeCarListFromNames("pobi,woni,jun,toby");
+            RacingCars cars = new RacingCars(list);
+            Car find = cars.find("jun");
+            assertThat(find.getCarName()).isEqualTo("jun");
+        });
+    }
+
+    @Test
+    public void 이름으로_자동차_찾기_테스트_예외() {
+        Throwable exceptionThrown = assertThrows(IllegalArgumentException.class, () -> {
+            List<Car> list = RacingCars.makeCarListFromNames("pobi,woni,jun,toby");
+            RacingCars cars = new RacingCars(list);
+            cars.find("juny");
+        });
+        assertThat(exceptionThrown.getMessage()).isEqualTo("존재하지 않는 자동차입니다.");
+    }
+
 }

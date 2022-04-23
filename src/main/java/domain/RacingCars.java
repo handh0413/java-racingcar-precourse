@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static domain.ValidationUtils.validateRacingCarsSize;
-
 public class RacingCars {
     private List<Car> cars;
 
@@ -28,6 +26,13 @@ public class RacingCars {
                 .map(Car::new)
                 .collect(Collectors.toList());
         return carList;
+    }
+
+    public Car find(String name) {
+        return cars.stream()
+                .filter(car -> name.equals(car.getCarName()))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 자동차입니다."));
     }
 
     public int getSize() {
