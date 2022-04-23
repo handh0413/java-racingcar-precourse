@@ -3,10 +3,12 @@ package controller;
 import domain.Car;
 import domain.RacingCars;
 import domain.RacingCount;
-import view.InputView;
+import view.OutputView;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static view.InputView.*;
 
 public class GameController {
     private RacingCars racingCars;
@@ -26,23 +28,23 @@ public class GameController {
 
     public void readUserInputForRacingCarNames() {
         try {
-            String names = InputView.readUserInput(InputView.REQUEST_NAMES);
+            String names = readUserInput(REQUEST_NAMES);
             this.racingCars = new RacingCars(RacingCars.makeCarListFromNames(names));
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] " + e.getMessage());
+            OutputView.printErrorMessage(e);
             readUserInputForRacingCarNames();
         }
     }
 
     public void readUserInputForRacingCount() {
         try {
-            int count = Integer.parseInt(InputView.readUserInput(InputView.REQUEST_COUNT));
+            int count = Integer.parseInt(readUserInput(REQUEST_COUNT));
             this.racingCount = new RacingCount(count);
         } catch (NumberFormatException e) {
-            System.out.println("[ERROR] 숫자를 입력해주세요.");
+            OutputView.printErrorMessage("숫자를 입력해주세요.");
             readUserInputForRacingCount();
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] " + e.getMessage());
+            OutputView.printErrorMessage(e);
             readUserInputForRacingCount();
         }
     }

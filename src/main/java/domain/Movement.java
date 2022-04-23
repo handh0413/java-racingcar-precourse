@@ -1,5 +1,7 @@
 package domain;
 
+import static view.MessageConstant.INVALID_INPUT_ERROR;
+
 public class Movement {
     private int position;
 
@@ -16,7 +18,7 @@ public class Movement {
 
     MovementStatus getMovementStatus(int number) {
         if (!ValidationUtils.validateMovementCondition(number)) {
-            throw new IllegalArgumentException("처리 불가능한 입력 값입니다.");
+            throw new IllegalArgumentException(INVALID_INPUT_ERROR);
         }
         if (ValidationUtils.validateStopCondition(number)) {
             return MovementStatus.STOP;

@@ -2,12 +2,14 @@ package domain;
 
 import java.util.Objects;
 
+import static view.MessageConstant.EXCEED_CAR_NAME_ERROR;
+
 public class CarName {
     String name;
 
     public CarName(String name) {
         if (!ValidationUtils.validateCarNameLength(name)) {
-            throw new IllegalArgumentException("자동차 이름 길이에 문제가 있습니다.");
+            throw new IllegalArgumentException(EXCEED_CAR_NAME_ERROR);
         }
         this.name = name;
     }

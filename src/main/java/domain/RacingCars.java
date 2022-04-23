@@ -5,12 +5,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static view.MessageConstant.DUPLICATE_CAR_NAME_ERROR;
+import static view.MessageConstant.NOT_EXIST_CAR_NAME_ERROR;
+
 public class RacingCars {
     private List<Car> cars;
 
     public RacingCars(List<Car> cars) {
         if (!validateDuplicateCar(cars)) {
-            throw new IllegalStateException("중복된 이름의 자동차가 포함되어 있습니다.");
+            throw new IllegalStateException(DUPLICATE_CAR_NAME_ERROR);
         }
         this.cars = cars;
     }
@@ -38,7 +41,7 @@ public class RacingCars {
         return cars.stream()
                 .filter(car -> name.equals(car.getCarName()))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 자동차입니다."));
+                .orElseThrow(() -> new IllegalArgumentException(NOT_EXIST_CAR_NAME_ERROR));
     }
 
     public int getSize() {
