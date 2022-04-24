@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mockStatic;
+import static view.MessageConstant.EXCEED_CAR_NAME_ERROR;
 
 
 class CarTest {
@@ -31,7 +32,7 @@ class CarTest {
         Throwable exceptionThrown = assertThrows(IllegalArgumentException.class, () -> {
             new Car(name);
         });
-        assertThat(exceptionThrown.getMessage()).isEqualTo("자동차 이름 길이에 문제가 있습니다.");
+        assertThat(exceptionThrown.getMessage()).isEqualTo(EXCEED_CAR_NAME_ERROR);
     }
 
     @ParameterizedTest

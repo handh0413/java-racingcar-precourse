@@ -5,7 +5,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static view.MessageConstant.EXCEED_CAR_NAME_ERROR;
 
 class CarNameTest {
 
@@ -25,7 +27,7 @@ class CarNameTest {
         Throwable exceptionThrown = assertThrows(IllegalArgumentException.class, () -> {
             new CarName(name);
         });
-        assertThat(exceptionThrown.getMessage()).isEqualTo("자동차 이름 길이에 문제가 있습니다.");
+        assertThat(exceptionThrown.getMessage()).isEqualTo(EXCEED_CAR_NAME_ERROR);
     }
 
 }

@@ -5,7 +5,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static view.MessageConstant.NOT_POSITIVE_NUMBER_ERROR;
 
 class RacingCountTest {
 
@@ -25,6 +27,6 @@ class RacingCountTest {
         Throwable exceptionThrown = assertThrows(IllegalArgumentException.class, () -> {
             new RacingCount(count);
         });
-        assertThat(exceptionThrown.getMessage()).isEqualTo("시도 횟수는 자연수 범위의 값을 입력해주세요.");
+        assertThat(exceptionThrown.getMessage()).isEqualTo(NOT_POSITIVE_NUMBER_ERROR);
     }
 }

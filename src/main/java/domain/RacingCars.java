@@ -44,10 +44,6 @@ public class RacingCars {
                 .orElseThrow(() -> new IllegalArgumentException(NOT_EXIST_CAR_NAME_ERROR));
     }
 
-    public int getSize() {
-        return cars.size();
-    }
-
     public List<Car> getCars() {
         return Collections.unmodifiableList(cars);
     }

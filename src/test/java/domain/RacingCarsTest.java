@@ -1,7 +1,6 @@
 package domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import controller.GameController;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -15,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mockStatic;
+import static view.MessageConstant.*;
 
 class RacingCarsTest {
 
@@ -33,7 +33,7 @@ class RacingCarsTest {
         Throwable exceptionThrown = assertThrows(IllegalArgumentException.class, () -> {
             new RacingCars(RacingCars.makeCarListFromNames(""));
         });
-        assertThat(exceptionThrown.getMessage()).isEqualTo("자동차 이름 길이에 문제가 있습니다.");
+        assertThat(exceptionThrown.getMessage()).isEqualTo(EXCEED_CAR_NAME_ERROR);
     }
 
     @ParameterizedTest
@@ -63,7 +63,7 @@ class RacingCarsTest {
         Throwable exceptionThrown = assertThrows(IllegalStateException.class, () -> {
             new RacingCars(RacingCars.makeCarListFromNames("pobi,pobi,jun,toby"));
         });
-        assertThat(exceptionThrown.getMessage()).isEqualTo("중복된 이름의 자동차가 포함되어 있습니다.");
+        assertThat(exceptionThrown.getMessage()).isEqualTo(DUPLICATE_CAR_NAME_ERROR);
     }
 
     @Test
@@ -83,7 +83,7 @@ class RacingCarsTest {
             RacingCars cars = new RacingCars(list);
             cars.find("juny");
         });
-        assertThat(exceptionThrown.getMessage()).isEqualTo("존재하지 않는 자동차입니다.");
+        assertThat(exceptionThrown.getMessage()).isEqualTo(NOT_EXIST_CAR_NAME_ERROR);
     }
 
     @Test
