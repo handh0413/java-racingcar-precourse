@@ -29,6 +29,7 @@ public class GameController {
         OutputView.printLine();
         OutputView.printMessage(RACING_RESULT);
         startRacing();
+        OutputView.printWinners(findWinners());
     }
 
     public void readUserInputForRacingCarNames() {

@@ -3,8 +3,12 @@ package view;
 import domain.Car;
 import domain.RacingCars;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class OutputView {
     private static final String ERROR_PREFIX = "[ERROR]";
+    public static final String WINNER_PRINT_SEPARATOR = ", ";
 
     public static void printErrorMessage(Exception exception) {
         System.out.println(ERROR_PREFIX + " " + exception.getMessage());
@@ -35,5 +39,11 @@ public class OutputView {
             System.out.print("-");
         }
         System.out.println();
+    }
+
+    public static void printWinners(List<Car> winners) {
+        System.out.print("최종 우승자 : ");
+        System.out.println(winners.stream().map(Car::getCarName)
+                .collect(Collectors.joining(WINNER_PRINT_SEPARATOR)));
     }
 }
